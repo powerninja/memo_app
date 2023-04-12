@@ -7,8 +7,10 @@ type Memotype = {
 
 function App() {
   const [text, setText] = useState<Memotype>({ memo: "" });
+  const [textDone, setTextDone] = useState<Memotype[]>([]);
   const addMemo = () => {
-    alert("test");
+    setTextDone([...textDone, { memo: text.memo }]);
+    setText({ memo: "" });
   };
   return (
     <>
@@ -19,8 +21,10 @@ function App() {
         onChange={(event) => setText({ ...text, memo: event.target.value })}
       ></input>
       <button onClick={addMemo}>追加</button>
-      {text.memo}
-      <RegisterMemo />
+
+      {textDone.map((memoObj) => (
+        <RegisterMemo memo={memoObj} />
+      ))}
     </>
   );
 }
