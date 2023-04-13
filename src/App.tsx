@@ -5,7 +5,7 @@ type Memotype = {
   memo?: string;
 };
 
-function App() {
+export const App = () => {
   const [text, setText] = useState<Memotype>({ memo: "" });
   const [textDone, setTextDone] = useState<Memotype[]>([]);
   const addMemo = () => {
@@ -27,6 +27,6 @@ function App() {
       ))}
     </>
   );
-}
+};
 
-export default App;
+// export default App;
