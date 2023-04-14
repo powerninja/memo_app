@@ -2,15 +2,16 @@ import React, { useState } from "react";
 import { RegisterMemo } from "./components/RegisterMemo";
 
 type Memotype = {
+  id: number;
   memo?: string;
 };
 
 export const App = () => {
-  const [text, setText] = useState<Memotype>({ memo: "" });
+  const [text, setText] = useState<Memotype>({ id: 0, memo: "" });
   const [textDone, setTextDone] = useState<Memotype[]>([]);
   const addMemo = () => {
-    setTextDone([...textDone, { memo: text.memo }]);
-    setText({ memo: "" });
+    setTextDone([...textDone, { id: text.id + 1, memo: text.memo }]);
+    setText({ id: text.id + 1, memo: "" });
   };
   return (
     <>
@@ -23,10 +24,8 @@ export const App = () => {
       <button onClick={addMemo}>追加</button>
 
       {textDone.map((memoObj) => (
-        <RegisterMemo memo={memoObj} />
+        <RegisterMemo key={memoObj.id} memo={memoObj} />
       ))}
     </>
   );
 };
-
-// export default App;
