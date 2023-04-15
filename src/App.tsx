@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { RegisterMemo } from "./components/RegisterMemo";
+import { useAddMemo } from "./hooks/useAddMemo";
 
 type Memotype = {
   id: number;
@@ -8,11 +9,8 @@ type Memotype = {
 
 export const App = () => {
   const [text, setText] = useState<Memotype>({ id: 0, memo: "" });
-  const [textDone, setTextDone] = useState<Memotype[]>([]);
-  const addMemo = () => {
-    setTextDone([...textDone, { id: text.id + 1, memo: text.memo }]);
-    setText({ id: text.id + 1, memo: "" });
-  };
+  const { addMemo, textDone } = useAddMemo(text.memo);
+
   return (
     <>
       <h1>簡単メモアプリ</h1>
