@@ -9,6 +9,7 @@ type Memotype = {
 
 export const App = () => {
   const [text, setText] = useState<Memotype>({ id: 0, memo: "" });
+
   const { addMemo, textDone } = useAddMemo(text.memo);
 
   return (
