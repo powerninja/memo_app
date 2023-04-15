@@ -10,20 +10,16 @@ export const useAddMemo = (props: any) => {
   const [text, setText] = useState<Memotype>({ id: 0, memo: "" });
   const [textDone, setTextDone] = useState<Memotype[]>([]);
 
-  // console.log(textDone, text);
-  const addMemo = useCallback(() => {
-    console.log("addMemo: ");
-    console.log(text);
-
+  const addMemo = () => {
     setTextDone([...textDone, { id: text.id + 1, memo: props }]);
     setText({ id: text.id + 1, memo: "" });
-    console.log(textDone);
-  }, [props]);
+  };
 
-  const deleteMemo = () => {
-    const updatedTextDone = textDone.filter((id) => id !== props);
+  const deleteMemo = (id: number) => {
+    const updatedTextDone = props.filter((memoid: any) => memoid.id !== id);
     setTextDone(updatedTextDone);
-    console.log("deleteMemo: " + textDone + props);
+    console.log(updatedTextDone);
+    console.log(id);
   };
 
   return { text, textDone, addMemo, deleteMemo };
