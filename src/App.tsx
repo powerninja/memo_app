@@ -23,6 +23,7 @@ export const App = () => {
       ></input>
       <button onClick={addMemo}>追加</button>
 
+      <p>メモ一覧</p>
       {textDone.map((memoObj) => (
         <React.Fragment key={memoObj.id}>
           <li>
