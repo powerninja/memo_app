@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { RegisterMemo } from "./components/RegisterMemo";
-import { CleanTask } from "./components/CleanTask";
 
 import { useAddMemo } from "./hooks/useAddMemo";
-import { useCleanTask } from "./hooks/useCleanTask";
 
 type Memotype = {
   id: number;
@@ -13,9 +11,7 @@ type Memotype = {
 export const App = () => {
   const [text, setText] = useState<Memotype>({ id: 0, memo: "" });
 
-  const { addMemo, textDone } = useAddMemo(text.memo);
-
-  const { deleteMemo } = useAddMemo(textDone);
+  const { addMemo, textDone, deleteMemo } = useAddMemo(text.memo);
 
   return (
     <>
@@ -31,9 +27,9 @@ export const App = () => {
         <React.Fragment key={memoObj.id}>
           <li>
             <RegisterMemo memo={memoObj} />
-            {/* <CleanTask memo={memoObj} /> */}
-            {/* <button onClick={deleteMemo}>削除</button> */}
-            <button onClick={() => deleteMemo(memoObj.id)}>削除</button>
+            <button onClick={() => deleteMemo(memoObj.id, textDone)}>
+              削除
+            </button>
           </li>
         </React.Fragment>
       ))}

@@ -1,10 +1,9 @@
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 type Memotype = {
   id: number;
   memo?: string;
 };
-// const onClickReset = useCallback(() => {}, [text]);
 
 export const useAddMemo = (props: any) => {
   const [text, setText] = useState<Memotype>({ id: 0, memo: "" });
@@ -15,11 +14,9 @@ export const useAddMemo = (props: any) => {
     setText({ id: text.id + 1, memo: "" });
   };
 
-  const deleteMemo = (id: number) => {
-    const updatedTextDone = props.filter((memoid: any) => memoid.id !== id);
-    setTextDone(updatedTextDone);
-    console.log(updatedTextDone);
-    console.log(id);
+  const deleteMemo = (id: number, taskMemo: any) => {
+    const updatedTextDone = taskMemo.filter((memoid: any) => memoid.id !== id);
+    setTextDone([...updatedTextDone]);
   };
 
   return { text, textDone, addMemo, deleteMemo };
