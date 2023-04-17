@@ -1,5 +1,3 @@
-export const RegisterMemo = (props: any) => {
-  const { memo } = props;
-
-  return <>{memo.memo}</>;
+export const RegisterMemo = (props: { memo: string | undefined }) => {
+  return <>{props.memo}</>;
 };

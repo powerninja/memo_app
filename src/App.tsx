@@ -5,7 +5,7 @@ import { useAddMemo } from "./hooks/useAddMemo";
 
 type Memotype = {
   id: number;
-  memo?: string;
+  memo: string;
 };
 
 export const App = () => {
@@ -27,7 +27,7 @@ export const App = () => {
       {textDone.map((memoObj) => (
         <React.Fragment key={memoObj.id}>
           <li>
-            <RegisterMemo memo={memoObj} />
+            <RegisterMemo memo={memoObj.memo} />
             <button onClick={() => deleteMemo(memoObj.id, textDone)}>
               削除
             </button>

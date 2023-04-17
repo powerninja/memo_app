@@ -5,7 +5,7 @@ type Memotype = {
   memo?: string;
 };
 
-export const useAddMemo = (props: any) => {
+export const useAddMemo = (props?: string) => {
   const [text, setText] = useState<Memotype>({ id: 0, memo: "" });
   const [textDone, setTextDone] = useState<Memotype[]>([]);
 
@@ -14,8 +14,10 @@ export const useAddMemo = (props: any) => {
     setText({ id: text.id + 1, memo: "" });
   };
 
-  const deleteMemo = (id: number, taskMemo: any) => {
-    const updatedTextDone = taskMemo.filter((memoid: any) => memoid.id !== id);
+  const deleteMemo = (id: number, taskMemo: Memotype[]) => {
+    const updatedTextDone = taskMemo.filter(
+      (memoid: Memotype) => memoid.id !== id
+    );
     setTextDone([...updatedTextDone]);
   };
 
